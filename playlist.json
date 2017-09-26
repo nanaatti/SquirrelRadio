@@ -1,0 +1,25 @@
+{"playlist":[{
+    "mediaid": "1",
+    "file": "http://users.metropolia.fi/~miikkale/video/audio1.mp3",
+    "title": "Audio 1",
+    "duration": 10,
+    "type": "audio/mp3",
+    "poster": "http://users.metropolia.fi/~miikkale/video/poster1.jpg"
+},
+{
+    "mediaid": "2",
+    "file": "http://users.metropolia.fi/~miikkale/video/audio2.mp3",
+    "title": "Audio 2",
+    "duration": 15,
+    "type": "audio/mp3",
+    "poster": "http://users.metropolia.fi/~miikkale/video/poster2.jpg"
+},
+{
+    "mediaid": "3",
+    "file": "http://users.metropolia.fi/~miikkale/video/audio3.mp3",
+    "title": "Audio 3",
+    "duration": 7,
+    "type": "audio/mp3",
+    "poster": "http://users.metropolia.fi/~miikkale/video/poster3.jpg"
+}
+]}
