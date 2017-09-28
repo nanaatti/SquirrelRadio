@@ -1,11 +1,12 @@
+window.setTimeout(function() {
 var context = new AudioContext();
-var theAudio = document.getElementById("audioPlayer");
+var theAudio = document.querySelector(".jw-video");
 var source = context.createMediaElementSource(theAudio);
 var analyse = context.createAnalyser(source);
 
 source.connect(analyse);
 
-analyse.fftSize = 4096;
+analyse.fftSize = 4096*2*2;
 console.log(analyse.fftSize);
 var bufferLength = analyse.frequencyBinCount;
 var dataArray = new Uint8Array(bufferLength);
@@ -77,10 +78,10 @@ new THREE.MeshStandardMaterial(
     });
 
   // Set up the sphere vars
-  var RADIUS = 30;
+  var RADIUS = 20;
 const SEGMENTS = 16;
 const RINGS = 16;
-var ball = new THREE.SphereGeometry(RADIUS,SEGMENTS,RINGS);
+var ball = new THREE.SphereBufferGeometry(RADIUS,SEGMENTS,RINGS);
 /*const sphere = new THREE.Mesh(
     
       new THREE.SphereGeometry(
@@ -98,10 +99,11 @@ scene.add(sphere);*/
       
 
 var b = 0;
-var Xoff = -2750;
+var Xoff = -2800;
 var Zoff = -1600;
 var Yoff = 1400;
-var pipGap = 65;
+var pipGap = 45;
+var linegap = 45;
 var pipStrain = WIDTH/RADIUS*2;
 var zup = 0
 for (i = 0; i < SphereAmmount; i++) {
@@ -124,7 +126,7 @@ for (i = 0; i < SphereAmmount; i++) {
         this['mulSphere-' + i].givenName = 'mulSphere-' + i;
         scene.add(this['mulSphere-' + i]);
         if(b > pipStrain) {
-            Yoff = Yoff - 100;
+            Yoff = Yoff - linegap;
             b = 0;
             zup = zup + 1;
         }
@@ -206,4 +208,5 @@ function sphereCalc () {
 //sphereCalc();
 requestAnimationFrame(update);
 
+}, 1000);
 
