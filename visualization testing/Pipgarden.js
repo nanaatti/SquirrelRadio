@@ -77,7 +77,7 @@ new THREE.MeshStandardMaterial(
     });
 
   // Set up the sphere vars
-  var RADIUS = 20;
+  var RADIUS = 30;
 const SEGMENTS = 16;
 const RINGS = 16;
 var ball = new THREE.SphereGeometry(RADIUS,SEGMENTS,RINGS);
@@ -102,29 +102,29 @@ var Xoff = -2750;
 var Zoff = -1600;
 var Yoff = 1400;
 var pipGap = 65;
-var pipStrain = WIDTH/RADIUS;
+var pipStrain = WIDTH/RADIUS*2;
 var zup = 0
 for (i = 0; i < SphereAmmount; i++) {
-        if (i % 2 == 0){
+        //if (i % 2 == 0){
             this['mulSphere-' + i] =  new THREE.Mesh(   
                 ball,
                 sphereMaterial1);
-            this['mulSphere-' + i].position.z = Zoff-(zup*50);
+            this['mulSphere-' + i].position.z = Zoff
             this['mulSphere-' + i].position.y = Yoff;
             this['mulSphere-' + i].position.x = Xoff+(b*pipGap);
             b = b + 1;
-        }else{
+        /*}else{
             this['mulSphere-' + i] =  new THREE.Mesh(   
                 ball,
                 sphereMaterial2);
             this['mulSphere-' + i].position.z = Zoff-((zup+1)*50);
             this['mulSphere-' + i].position.y = Yoff-200;
             this['mulSphere-' + i].position.x = Xoff+((b-1)*pipGap);
-        }
+        }*/
         this['mulSphere-' + i].givenName = 'mulSphere-' + i;
         scene.add(this['mulSphere-' + i]);
         if(b > pipStrain) {
-            Yoff = Yoff - 400;
+            Yoff = Yoff - 100;
             b = 0;
             zup = zup + 1;
         }
@@ -152,15 +152,15 @@ function former () {
     this['mulSphere-' + i].scale.z = dataArray[i]/128;
         }else{ */
     this['mulSphere-' + i].scale.x = dataArray[i]/128;
-    this['mulSphere-' + i].scale.y = dataArray[i]/128*4;
-    this['mulSphere-' + i].scale.z = dataArray[i]/128;
+    this['mulSphere-' + i].scale.y = dataArray[i]/128;
+    //this['mulSphere-' + i].scale.z = dataArray[i]/128;
        // }
     }
 }
 var col = 0;
 function Coloriser () {
     for (i = 0; i < SphereAmmount; i++) {
-    if (i % 2 == 0){
+    //if (i % 2 == 0){
         switch (col) {
             case 0: 
                 this['mulSphere-' + i].material.color.b = Math.random();
@@ -172,11 +172,11 @@ function Coloriser () {
                 this['mulSphere-' + i].material.color.r = Math.random();
                 col = 0;
         }
-    }else{
+    /*}else{
     this['mulSphere-' + i].material.color.b = Math.random();
     this['mulSphere-' + i].material.color.g = Math.random();
     this['mulSphere-' + i].material.color.r = Math.random();
-    }
+    }*/
     }
 }
 
@@ -191,6 +191,7 @@ analyse.getByteTimeDomainData(dataArray);
   // Draw!
   renderer.render(scene, camera);
   former();
+
 
   // Schedule the next frame.
   requestAnimationFrame(update);
