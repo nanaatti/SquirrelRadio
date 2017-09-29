@@ -1,0 +1,10 @@
+{"playlist":[
+{
+    "mediaid": "1",
+    "file": "http://users.metropolia.fi/~miikkale/video/audio1.mp3",
+    "title": "Audio 1",
+    "duration": 10,
+    "type": "audio/mp3",
+    "poster": "http://users.metropolia.fi/~miikkale/video/poster1.jpg"
+}
+]}
