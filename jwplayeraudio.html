@@ -4,11 +4,14 @@
 <head>
     <title>JWPlayer Audio Playlist</title>
     <script src="https://content.jwplatform.com/libraries/QA8aoWzd.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
 
 <div id="audioPlayer"></div>
+<div id="songList">Playlist:</div>
+<div id="nowPlaying"></div>
 
 <script type="text/javascript">
 
@@ -23,16 +26,28 @@ playerInstance.setup({
     
 jwplayer("audioPlayer").on('play', function(){
     var audio = jwplayer().getPlaylistItem();
-    document.getElementById("nowPlaying").innerHTML = audio.title + "<br>" + audio.duration + "<br> <img src=\"" + audio.poster + "\" style=\"width:300px;height:300px;\">";
+    document.getElementById("nowPlaying").innerHTML = "Now Playing: " + audio.title + " | " + audio.duration + "<br> <img src=\"" + audio.poster + "\" style=\"width:200px;height:200px;\">";
 });
     
 jwplayer("audioPlayer").on('complete', function(){
     document.getElementById("nowPlaying").innerHTML = "";
 });
 
+var songs = $.getJSON("playlist.json")
+    .done(function(data) {
+        for (i = 0; i < data.playlist.length; i++) {
+            document.getElementById("songList").innerHTML += "</br>" + data.playlist[i].mediaid + " | " + "<button type=\"button\" onclick=\"playSong(" + data.playlist[i].mediaid + ")\">" + data.playlist[i].title + "</button>" + " | " + data.playlist[i].duration;
+        }
+    })
+    .fail(function() {
+        console.log( "error" );
+    });
+
+function playSong(x) {
+    jwplayer().playlistItem(x-1);
+}
+
 </script>
-    
-<p id="nowPlaying"></p>
     
 </body>
     
