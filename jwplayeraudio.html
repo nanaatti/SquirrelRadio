@@ -11,8 +11,8 @@
 
 <div id="audioPlayer"></div>
 <div id="playlistSelection">
-    <button type="button" onclick="playlistAll()">All</button>
-    <button type="button" onclick="playlistCustom()">Custom</button>
+    <button type="button" onclick="loadPlaylist('playlist.json')">All</button>
+    <button type="button" onclick="loadPlaylist('custom.json')">Custom</button>
 </div>
 <div id="songList">Playlist:</div>
 <div id="nowPlaying"></div>
@@ -28,7 +28,7 @@ playerInstance.setup({
     playlist: "playlist.json"
 });
 
-loadAll();
+loadPlaylist('playlist.json');
     
 jwplayer("audioPlayer").on('play', function(){
     var audio = jwplayer().getPlaylistItem();
@@ -39,20 +39,12 @@ jwplayer("audioPlayer").on('complete', function(){
     document.getElementById("nowPlaying").innerHTML = "";
 });
 
-function loadAll(){
-    $.getJSON("playlist.json")
-    .done(function(data) {
-        for (i = 0; i < data.playlist.length; i++) {
-            document.getElementById("songList").innerHTML += "</br>" + data.playlist[i].mediaid + " | " + "<button type=\"button\" onclick=\"playSong(" + data.playlist[i].mediaid + ")\">" + data.playlist[i].title + "</button>" + " | " + data.playlist[i].duration;
-        }
-    })
-    .fail(function() {
-        console.log( "error" );
-    });
-}
+function loadPlaylist(name){
+    playerInstance.load(name);
+    clearList();
+    document.getElementById("nowPlaying").innerHTML = "";
 
-function loadCustom(){
-    $.getJSON("custom.json")
+    $.getJSON(name)
     .done(function(data) {
         for (i = 0; i < data.playlist.length; i++) {
             document.getElementById("songList").innerHTML += "</br>" + data.playlist[i].mediaid + " | " + "<button type=\"button\" onclick=\"playSong(" + data.playlist[i].mediaid + ")\">" + data.playlist[i].title + "</button>" + " | " + data.playlist[i].duration;
@@ -69,20 +61,6 @@ function playSong(x) {
 
 function clearList(){
     document.getElementById("songList").innerHTML = "Playlist:";
-}
-
-function playlistAll() { 
-    playerInstance.load("playlist.json");
-    clearList();
-    loadAll();
-    document.getElementById("nowPlaying").innerHTML = "";
-}
-
-function playlistCustom() { 
-    playerInstance.load("custom.json");
-    clearList();
-    loadCustom();
-    document.getElementById("nowPlaying").innerHTML = "";
 }
 
 </script>
