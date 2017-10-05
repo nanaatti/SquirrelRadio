@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>OravaRadio</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="styles/style.css">
+        <script src="http://users.metropolia.fi/~santtuta/blarg/three.js"></script>
+    	<script src="https://content.jwplatform.com/libraries/QA8aoWzd.js"></script>
+        <script src="scripts/main.js"></script>
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <!-- font awesome -->
+        <script src="https://use.fontawesome.com/9e83122016.js"></script>
+        <!-- google platform library & sign in -->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="374371423035-78jp1cjvbticpdb6ojib1dlu3asmhhbb.apps.googleusercontent.com">
+    </head>
+
+<body>
+    <div class="container-fluid">
+            <nav class="row navbar navbar-toggleable-md navbar-inverse bg-inverse">
+                    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <span class="navbar-brand">SquirrelRadio</span>
+                    <span class="navbar-text"><img id="testlogo" src="img/testlogo.jpg"></span>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                      <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                          <a class="nav-link" href="main.html">Radio <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="index.html">Login page</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="audioplayer.html">AudioTest</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+
+                  <div class="row content mx-auto placeHolder">
+
+
+                          <p id="demotext">*Audio visualisation placeholder*</p>
+                          <img id='placeHolderImg' src="img/mustekala.jpg">
+
+
+                  </div>
+<div class='row content mx-auto' id="audioPlayer"></div>
+
+                  <div class="row content mx-auto">
+                        <p class="tracks">
+                                Track 1
+                                <i class="fa fa-heart-o heart likecounter" aria-hidden="true" id="heart" onClick="like(this)"></i>
+                                <span id="likes" class="likecounter"></span>
+                            </p>
+                      <p class="tracks">Track 2</p>  
+                      <p class="tracks">Track 3</p>  
+                      <p class="tracks">Track 4</p>
+                  </div>
+    </div>
+</body>
+	<script src='scripts/jw.js'></script>
+	<script src='scripts/Visualization.js'></script>
+</html>
