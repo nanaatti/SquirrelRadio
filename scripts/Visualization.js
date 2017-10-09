@@ -2,7 +2,7 @@ window.setTimeout(function() {
 //console.log($('.placeHolder').innerWidth());
 //const WIDTH = Math.round($('.placeHolder').innerWidth());
 //const HEIGHT = Math.round($('.placeHolder').innerHeight());
-//$('div.placeHolder').replaceWith("<div  id='container'></div>");
+//$('div.placeHolder').replaceWith("<div id='container'></div>");
 //class='row content mx-auto'
 //console.log($('#placeHolderImg').innerHeight());
 var context = new AudioContext();
@@ -12,14 +12,12 @@ var analyse = context.createAnalyser(source);
 
 source.connect(analyse);
 
-analyse.fftSize = 4096*2;
-console.log(analyse.fftSize);
+analyse.fftSize = 8192;
 var bufferLength = analyse.frequencyBinCount;
 var dataArray = new Uint8Array(bufferLength);
 analyse.getByteTimeDomainData(dataArray);
 
 const SphereAmmountTrue = analyse.fftSize/2;
-console.log(SphereAmmountTrue);
     
 
 /*window.setInterval(function(){
@@ -41,10 +39,25 @@ console.log(source);
 //const HEIGHT = window.innerHeight;
 
 const WIDTH = 1920;
-const HEIGHT = 1080;
+
+
+  // Set up the sphere vars
+  var RADIUS = 20;
+  const SEGMENTS = 8;
+  const RINGS = 8;
+
+var pipStrain = (WIDTH/RADIUS);
+var pipGap = RADIUS*2;
+var linegap = pipGap;
+
+const pipOverlap = SphereAmmountTrue%pipStrain;
+const SphereAmmountRender = SphereAmmountTrue-pipOverlap;
+console.log(SphereAmmountRender);
+
+const HEIGHT = (SphereAmmountRender/pipStrain)*RADIUS;
 
 // Set some camera attributes.
-const VIEW_ANGLE = 90;
+const VIEW_ANGLE = 80;
 const ASPECT = WIDTH / HEIGHT;
 const NEAR = 0.01;
 const FAR = 20000;
@@ -64,6 +77,7 @@ const camera =
         NEAR,
         FAR
     );
+    camera.position.y = 50;
 
 const scene = new THREE.Scene();
 
@@ -87,10 +101,6 @@ new THREE.MeshStandardMaterial(
     color: 0x00ff00
     });
 
-  // Set up the sphere vars
-  var RADIUS = 20;
-const SEGMENTS = 8;
-const RINGS = 8;
 var ball = new THREE.SphereBufferGeometry(RADIUS,SEGMENTS,RINGS);
 /*const sphere = new THREE.Mesh(
     
@@ -112,31 +122,26 @@ var b = 0;
 var Xoff = -WIDTH;
 var Zoff = -1200;
 var Yoff = HEIGHT;
-var pipStrain = (WIDTH/RADIUS);
-var pipGap = RADIUS*2;
-var linegap = pipGap;
 var zup = 0
-const pipOverlap = SphereAmmountTrue%pipStrain;
-const SphereAmmountRender = SphereAmmountTrue-pipOverlap;
 for (i = 0; i < SphereAmmountRender; i++) {
         //if (i % 2 == 0){
-            this['mulSphere-' + i] =  new THREE.Mesh(   
+            this['mulSphere' + i] =  new THREE.Mesh(   
                 ball,
                 sphereMaterial1);
-            this['mulSphere-' + i].position.z = Zoff
-            this['mulSphere-' + i].position.y = Yoff;
-            this['mulSphere-' + i].position.x = Xoff+(b*pipGap);
+            this['mulSphere' + i].position.z = Zoff
+            this['mulSphere' + i].position.y = Yoff;
+            this['mulSphere' + i].position.x = Xoff+(b*pipGap);
             b = b + 1;
         /*}else{
-            this['mulSphere-' + i] =  new THREE.Mesh(   
+            this['mulSphere' + i] =  new THREE.Mesh(   
                 ball,
                 sphereMaterial2);
-            this['mulSphere-' + i].position.z = Zoff-((zup+1)*50);
-            this['mulSphere-' + i].position.y = Yoff-200;
-            this['mulSphere-' + i].position.x = Xoff+((b-1)*pipGap);
+            this['mulSphere' + i].position.z = Zoff-((zup+1)*50);
+            this['mulSphere' + i].position.y = Yoff-200;
+            this['mulSphere' + i].position.x = Xoff+((b-1)*pipGap);
         }*/
-        this['mulSphere-' + i].givenName = 'mulSphere-' + i;
-        scene.add(this['mulSphere-' + i]);
+        this['mulSphere' + i].givenName = 'mulSphere' + i;
+        scene.add(this['mulSphere' + i]);
         if(b >= pipStrain) {
             Yoff = Yoff - linegap;
             b = 0;
@@ -162,13 +167,14 @@ renderer.setSize(WIDTH, HEIGHT);
 function former () {
     for (i = 0; i < SphereAmmountRender; i++) {
     /*    if (dataArray[i] === 128){
-    this['mulSphere-' + i].scale.x = 0;
-    this['mulSphere-' + i].scale.y = 0;
-    this['mulSphere-' + i].scale.z = 0;
+    this['mulSphere' + i].scale.x = 0;
+    this['mulSphere' + i].scale.y = 0;
+    this['mulSphere' + i].scale.z = 0;
         }else{ */
-    this['mulSphere-' + i].scale.x = dataArray[i]/128;
-    this['mulSphere-' + i].scale.y = dataArray[i]/128;
-    //this['mulSphere-' + i].scale.z = dataArray[i]/128;
+    this['mulSphere' + i].scale.x = dataArray[i]/128;
+    this['mulSphere' + i].scale.y = dataArray[i]/128;
+    //this['mulSphere' + i].scale.z = dataArray[i]/128;
+    this['mulSphere' + i].position.z = Zoff+((dataArray[i]-128));
        // }
     }
 }
@@ -177,13 +183,13 @@ function Coloriser () {
     for (i = 0; i < SphereAmmountRender; i++) {
             switch (col) {
             case 0: 
-                this['mulSphere-' + i].material.color.b = Math.random();
+                this['mulSphere' + i].material.color.b = Math.random()+0,2;
                 col = col++;
             case 1:
-                this['mulSphere-' + i].material.color.g = Math.random();
+                this['mulSphere' + i].material.color.g = Math.random()+0,2;
                 col = col++;
             case 2:
-                this['mulSphere-' + i].material.color.r = Math.random();
+                this['mulSphere' + i].material.color.r = Math.random()+0,2;
                 col = 0;
         }
 
@@ -209,7 +215,7 @@ analyse.getByteTimeDomainData(dataArray);
 
 function sphereCalc () {
     for (i = 0; i < SphereAmmountTrue; i++) {
-        console.log(this['mulSphere-' + i])
+        console.log(this['mulSphere' + i])
     }
 }
 // Schedule the first frame.

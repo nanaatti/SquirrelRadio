@@ -10,6 +10,16 @@ canvas{
     width:100%;
 }
 
+
+header {
+	top:0px;
+	left:0px;
+}
+
+.page-padding {
+    height:90px; width:100%;
+}
+
 #testlogo {
     width: 70px;
 }
@@ -86,6 +96,13 @@ img {
   color: aqua;
 }
 
+#likes {
+    /*float: right;*/
+}
+
+.heart {
+    /*float: right;*/
+}
 
 .playlist {
     height: 100%;
@@ -119,4 +136,10 @@ img {
     top: 0;
     font-size: 36px;
     margin-right: 200px;
+}
+
+#page1 {
+    margin-top: 6em;
+    padding-top: 6em;
+    background-color: lightgrey;
 }
