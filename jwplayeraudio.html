@@ -13,7 +13,7 @@
 <div id="audioPlayer"></div>
 <div id="playlistSelection">
     <button type="button" onclick="loadPlaylist('playlist.json')">All</button>
-    <button type="button" onclick="loadPlaylist('custom.json')">Custom</button>
+    <!-- <button type="button" onclick="loadPlaylist('custom.json')">Custom</button> -->
     <button type="button" onclick="loadPlaylist('saved')">Saved</button>
 </div>
 <div id="songList">Playlist:</div>
@@ -38,24 +38,33 @@ playerInstance.setup({
 });
 
 loadPlaylist('playlist.json');
-    
-jwplayer("audioPlayer").on('play', function(){
-    var audio = jwplayer().getPlaylistItem();
-    document.getElementById("nowPlaying").innerHTML = "Now Playing: " + audio.title + " | " + audio.duration + "<br> <img src=\"" + audio.poster + "\" style=\"width:200px;height:200px;\">";
-});
+
+function onPlay(){
+    jwplayer("audioPlayer").on('play', function(){
+        var audio = jwplayer().getPlaylistItem();
+        document.getElementById("nowPlaying").innerHTML = "Now Playing: " + audio.title + " | " + audio.duration + "<br> <img src=\"" + audio.poster + "\" style=\"width:200px;height:200px;\">";
+    });
+}
     
 jwplayer("audioPlayer").on('complete', function(){
     clearInfo();
 });
 
 function loadPlaylist(name){
-    playerInstance.load(name);
     clearList();
     clearInfo();
 
     console.log(name);
-
     if (/\w*.json/.test(name) == true) {
+
+        playerInstance.setup({
+        width: 640,
+	    height: 40,
+        repeat: false,
+        autostart: false,
+        playlist: name,
+        volume: 100
+        });
 
         $.getJSON(name)
         .done(function(data) {
@@ -67,12 +76,25 @@ function loadPlaylist(name){
         .fail(function() {
             console.log( "error" );
         });
+        onPlay();
     }
 
     else {
+
+        playerInstance.setup({
+            width: 640,
+	        height: 40,
+            repeat: false,
+            autostart: false,
+            playlist: saved,
+            volume: 100
+        });
+
         for (i = 0; i < saved.playlist.length; i++) {
             document.getElementById("songList").innerHTML += "</br>" + saved.playlist[i].mediaid + " | " + "<button type=\"button\" onclick=\"playSong(" + saved.playlist[i].mediaid + ")\">" + saved.playlist[i].title + "</button>" + " | " + saved.playlist[i].duration;
         }
+        
+        onPlay();
     }
 }
 
@@ -89,27 +111,25 @@ function clearInfo(){
 }
     
 var saved = {
-    playlist: [{
-        "mediaid": "2",
-        "file": "http://users.metropolia.fi/~miikkale/video/audio2.mp3",
-        "title": "Audio 2",
-        "duration": 15,
-        "type": "audio/mp3",
-        "poster": "http://users.metropolia.fi/~miikkale/video/poster2.jpg"
-    }]
+    playlist: [
+
+    ]
 };
 
 var mid = 0;
     
 function addSong() {
     mid = mid+1;
+
+    var audio = jwplayer().getPlaylistItem();
+
     saved.playlist.push({
     "mediaid": mid,
-    "file": "http://users.metropolia.fi/~miikkale/video/audio3.mp3",
-    "title": "Audio 3",
-    "duration": 7,
-    "type": "audio/mp3",
-    "poster": "http://users.metropolia.fi/~miikkale/video/poster3.jpg"
+    "file": audio.file,
+    "title": audio.title,
+    "duration": audio.duration,
+    "type": audio.type,
+    "poster": audio.poster
     });
 }
 
