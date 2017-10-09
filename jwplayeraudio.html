@@ -21,9 +21,18 @@
 <div id="test">
     <button type="button" onclick="addSong()">Add Song</button>
     <button type="button" onclick="savePlaylist()">Save</button>
+    <button type="button" onclick="clearPlaylist()">Clear</button>
 </div>
 
 <script type="text/javascript">
+
+if (localStorage['userPlaylist']) {
+    var saved = JSON.parse(localStorage['userPlaylist']);
+} else {
+    var saved = {
+    "playlist":[]
+};
+}
 
 var json;
 
@@ -110,11 +119,7 @@ function clearInfo(){
     document.getElementById("nowPlaying").innerHTML = "";
 }
     
-var saved = {
-    playlist: [
 
-    ]
-};
 
 var mid = 0;
     
@@ -134,7 +139,15 @@ function addSong() {
 }
 
 function savePlaylist() {
+    localStorage.setItem('userPlaylist', JSON.stringify(saved));
     console.log(saved);
+}
+
+function clearPlaylist() {
+    localStorage.removeItem('userPlaylist');
+    var saved = {
+        "playlist":[]
+    };
 }
 
 </script>
