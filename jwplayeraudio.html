@@ -21,7 +21,7 @@
 <div id="test">
     <button type="button" onclick="addSong()">Add Song</button>
     <button type="button" onclick="savePlaylist()">Save</button>
-    <button type="button" onclick="clearPlaylist()">Clear</button>
+    <button type="button" id="clear" onclick="clearPlaylist()">Clear</button>
 </div>
 
 <script type="text/javascript">
@@ -75,6 +75,8 @@ function loadPlaylist(name){
         volume: 100
         });
 
+        $("#clear").attr("hidden", true);
+
         $.getJSON(name)
         .done(function(data) {
             console.log(data);
@@ -98,6 +100,8 @@ function loadPlaylist(name){
             playlist: saved,
             volume: 100
         });
+
+        $("#clear").attr("hidden", false);
 
         for (i = 0; i < saved.playlist.length; i++) {
             document.getElementById("songList").innerHTML += "</br>" + saved.playlist[i].mediaid + " | " + "<button type=\"button\" onclick=\"playSong(" + saved.playlist[i].mediaid + ")\">" + saved.playlist[i].title + "</button>" + " | " + saved.playlist[i].duration;
@@ -145,9 +149,10 @@ function savePlaylist() {
 
 function clearPlaylist() {
     localStorage.removeItem('userPlaylist');
-    var saved = {
+    saved = {
         "playlist":[]
     };
+    clearList();
 }
 
 </script>
