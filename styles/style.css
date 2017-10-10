@@ -1,6 +1,25 @@
+#page1 {
+    width: 100%;
+}
+
 h1 {
     text-align: center;
     padding: 70px;
+}
+
+canvas{
+    height:100%;
+    width:100%;
+}
+
+
+header {
+	top:0px;
+	left:0px;
+}
+
+.page-padding {
+    height:90px; width:100%;
 }
 
 #testlogo {
@@ -119,4 +138,10 @@ img {
     top: 0;
     font-size: 36px;
     margin-right: 200px;
+}
+
+#page1 {
+    margin-top: 6em;
+    padding-top: 6em;
+    background-color: lightgrey;
 }

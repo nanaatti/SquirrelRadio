@@ -4,6 +4,9 @@
         <title>OravaRadio</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="styles/style.css">
+        <script src="http://users.metropolia.fi/~santtuta/blarg/three.js"></script>
+        <script src="http://users.metropolia.fi/~santtuta/blarg/OrbitControls.js"></script>        
+    	<script src="https://content.jwplatform.com/libraries/QA8aoWzd.js"></script>
         <script src="scripts/main.js"></script>
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -40,14 +43,15 @@
                     </div>
                   </nav>
 
-                    <div id='container'>
-                        <p></p>
-                    </div>
+                  <div class="row content mx-auto placeHolder">
 
-                  <div class="row content mx-auto">
+
                           <p id="demotext">*Audio visualisation placeholder*</p>
-                          <img src="img/mustekala.jpg">
+                          <img id='placeHolderImg' src="img/mustekala.jpg">
+
+
                   </div>
+<div class='row content mx-auto' id="audioPlayer"></div>
 
                   <div class="row content mx-auto">
                         <p class="tracks">
@@ -61,4 +65,6 @@
                   </div>
     </div>
 </body>
+	<script src='scripts/jw.js'></script>
+	<script src='scripts/Visualization.js'></script>
 </html>

@@ -1,10 +1,10 @@
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>SquirrelRadio</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="styles/style.css">
-        <script src="scripts/index.js"></script>
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
@@ -14,36 +14,87 @@
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <meta name="google-signin-client_id" content="374371423035-78jp1cjvbticpdb6ojib1dlu3asmhhbb.apps.googleusercontent.com">
         <!-- visualisation -->
-        <script src='http://users.metropolia.fi/~santtuta/blarg/three.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/87/three.min.js'></script>
+        <!-- visutest -->
+        <header name = "Access-Control-Allow-Origin" value = "*" /> 
+    	<script src="https://content.jwplatform.com/libraries/QA8aoWzd.js"></script>
+        <!-- jquery & jquery smooth scroll -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- <script src="https://github.com/kswedberg/jquery-smooth-scroll/blob/master/jquery.smooth-scroll.min.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/2.2.0/jquery.smooth-scroll.min.js"></script>     
+        <!-- jwplayer -->
+        <script src="https://content.jwplatform.com/libraries/QA8aoWzd.js"></script>
+        <!-- jwplayer custom skin -->
+        <link rel="stylesheet" type="text/css" href="styles/customskin.css">
+        <!-- 
+        <script>
+                $('.smooth').on('click', function() {
+                    $.smoothScroll({
+                        scrollElement: $('body'),
+                        scrollTarget: '#' + this.id
+                    });
+                    console.log('#' + this.id);
+                    console.log("test");
+                    return false;
+                });
+        </script>
+    -->
     </head>
 
 <body>
     <div class="container-fluid">
         <header>
-        <h1>SquirrelRadio</h1>
         </header>
+        <header name = "Access-Control-Allow-Origin" value = "*" /> 
 
-        <nav class="nav flex-column">
-                <li class="nav-item">
-                    <div id="signbtn" class="g-signin2 btn" data-onsuccess="onSignIn"></div>
-                </li>
-                <li class="nav-item">
-                    <a class="btn" href="#" onclick="signOut();">Sign out</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn" href="logged.html">Log in</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn" href="main.html">Continue without logging in</a>
-                </li>
+        <nav class="row navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <span class="navbar-brand">SquirrelRadio</span>
+            <span class="navbar-text"><img id="testlogo" src="img/testlogo.jpg"></span>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link smooth" href="#audiotest">Radio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link smooth" href="#test2">Test2</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </div>
 
-        <div id='container'>
-                <p></p>
+    <div id="page1">      
+        <a name="audiotest" class="smooth"></a>
+        <!--visutest-->
+        <div id="container"></div>
+        <!--audiotest-->
+        <div id="audioPlayer"></div>
+        <div id="playlistSelection">
+            <button type="button" onclick="loadPlaylist('playlist.json')">All</button>
+            <button type="button" onclick="loadPlaylist('saved')">Saved</button>
         </div>
+        <div id="songList">Playlist:</div>
+        <div id="nowPlaying"></div>
+        <div id="playlistEdit">
+            <button type="button" onclick="addSong()">Add Song</button>
+            <button type="button" onclick="savePlaylist()">Save</button>
+            <button type="button" id="clear" onclick="clearPlaylist()">Clear</button>
+        </div>
+    </div>
+
+    <div id="page2">
+        <a name="test2"></a>
+        <p id="demotext">*Audio visualisation placeholder*</p>
+        <img src="img/mustekala.jpg">
+    </div>
 </body>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script src="scripts/index.js"></script>
+<script type="text/javascript" src="scripts/player.js"></script>
+<!-- <script src='scripts/Visualization.js'></script> -->
 
-<script src='http://users.metropolia.fi/~santtuta/blarg/scripts.js'></script>
 </html>

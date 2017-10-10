@@ -1,25 +1,83 @@
-{"playlist":[{
-    "mediaid": "1",
-    "file": "http://users.metropolia.fi/~miikkale/video/audio1.mp3",
-    "title": "Audio 1",
-    "duration": 10,
-    "type": "audio/mp3",
-    "poster": "http://users.metropolia.fi/~miikkale/video/poster1.jpg"
-},
-{
-    "mediaid": "2",
-    "file": "http://users.metropolia.fi/~miikkale/video/audio2.mp3",
-    "title": "Audio 2",
-    "duration": 15,
-    "type": "audio/mp3",
-    "poster": "http://users.metropolia.fi/~miikkale/video/poster2.jpg"
-},
-{
-    "mediaid": "3",
-    "file": "http://users.metropolia.fi/~miikkale/video/audio3.mp3",
-    "title": "Audio 3",
-    "duration": 7,
-    "type": "audio/mp3",
-    "poster": "http://users.metropolia.fi/~miikkale/video/poster3.jpg"
-}
+
+{"playlist":[
+    {
+        "mediaid": "1",
+        "file": "http://users.metropolia.fi/~miikkale/video/audio1.mp3",
+        "title": "Audio 1",
+        "duration": 10,
+        "type": "audio/mp3",
+        "poster": "http://users.metropolia.fi/~miikkale/video/poster1.jpg"
+    },
+    {
+        "mediaid": "2",
+        "file": "http://users.metropolia.fi/~miikkale/video/audio2.mp3",
+        "title": "Audio 2",
+        "duration": 15,
+        "type": "audio/mp3",
+        "poster": "http://users.metropolia.fi/~miikkale/video/poster2.jpg"
+    },
+    {
+        "mediaid": "3",
+        "file": "http://users.metropolia.fi/~miikkale/video/audio3.mp3",
+        "title": "Audio 3",
+        "duration": 7,
+        "type": "audio/mp3",
+        "poster": "http://users.metropolia.fi/~miikkale/video/poster3.jpg"
+    },
+    {
+        "mediaid": "4",
+        "file": "http://users.metropolia.fi/~santtuta/musac/Caravan%20Palace%20-%20Lone%20Digger.mp3",
+        "title": "Caravan Palace - Lone Digger",
+        "type": "audio/mp3",
+        "poster": "http://users.metropolia.fi/~miikkale/video/poster1.jpg"
+    },
+    {
+        "mediaid": "5",
+        "file": "http://users.metropolia.fi/~santtuta/musac/Kantele320.mp3",
+        "title": "Kantele320",
+        "type": "audio/mp3",
+        "poster": "http://users.metropolia.fi/~miikkale/video/poster2.jpg"
+    },
+    {
+        "mediaid": "6",
+        "file": "http://users.metropolia.fi/~santtuta/musac/Nightdreams.mp3",
+        "title": "Nightdreams",
+        "type": "audio/mp3",
+        "poster": "http://users.metropolia.fi/~miikkale/video/poster3.jpg"
+    },
+    {
+        "mediaid": "7",
+        "file": "http://users.metropolia.fi/~santtuta/musac/tail%20of%20a%20knight.mp3",
+        "title": "Tail of a Knight",
+        "type": "audio/mp3",
+        "poster": "http://users.metropolia.fi/~miikkale/video/poster3.jpg"
+    },
+    {
+        "mediaid": "8",
+        "file": "http://users.metropolia.fi/~santtuta/musac/Song%20of%20Kings%20-%20Clamavi%20De%20Profundis.mp3",
+        "title": "Song of Kings - Clamavi De Profundis",
+        "type": "audio/mp3",
+        "poster": "http://users.metropolia.fi/~miikkale/video/poster3.jpg"
+    },
+    {
+        "mediaid": "9",
+        "file": "http://users.metropolia.fi/~santtuta/OravaTesting/audioTesting/notes/A3-220.0.mp3",
+        "title": "Note1",
+        "type": "audio/mp3",
+        "poster": "http://users.metropolia.fi/~miikkale/video/poster3.jpg"
+    },
+    {
+        "mediaid": "10",
+        "file": "http://users.metropolia.fi/~santtuta/OravaTesting/audioTesting/notes/A4-440.0.mp3",
+        "title": "Note2",
+        "type": "audio/mp3",
+        "poster": "http://users.metropolia.fi/~miikkale/video/poster3.jpg"
+    },
+    {
+        "mediaid": "11",
+        "file": "http://users.metropolia.fi/~santtuta/OravaTesting/audioTesting/notes/E5-659.26.mp3",
+        "title": "Note3",
+        "type": "audio/mp3",
+        "poster": "http://users.metropolia.fi/~miikkale/video/poster3.jpg"
+    }
 ]}
