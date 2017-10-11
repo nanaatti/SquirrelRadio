@@ -63,6 +63,8 @@ function loadPlaylist(name){
     clearList();
     clearInfo();
 
+    var num = 1;
+
     console.log(name);
     if (/\w*.json/.test(name) == true) {
 
@@ -89,7 +91,8 @@ function loadPlaylist(name){
         .done(function(data) {
             console.log(data);
             for (i = 0; i < data.playlist.length; i++) {
-                document.getElementById("songList").innerHTML += "</br>" + data.playlist[i].mediaid + " | " + "<button type=\"button\" onclick=\"playSong(" + data.playlist[i].mediaid + ")\">" + data.playlist[i].title + "</button>" + " | " + data.playlist[i].duration;
+                document.getElementById("songList").innerHTML += "</br>" + num + " | " + "<button type=\"button\" onclick=\"playSong(" + data.playlist[i].mediaid + ")\">" + data.playlist[i].title + "</button>";
+                num = num+1;
             }
         })
         .fail(function() {
@@ -120,7 +123,8 @@ function loadPlaylist(name){
             },500);
 
         for (i = 0; i < saved.playlist.length; i++) {
-            document.getElementById("songList").innerHTML += "</br>" + saved.playlist[i].mediaid + " | " + "<button type=\"button\" onclick=\"playSong(" + saved.playlist[i].mediaid + ")\">" + saved.playlist[i].title + "</button>" + " | " + saved.playlist[i].duration;
+            document.getElementById("songList").innerHTML += "</br>" + num + " | " + "<button type=\"button\" onclick=\"playSong(" + saved.playlist[i].mediaid + ")\">" + saved.playlist[i].title + "</button>";
+            num = num+1;
         }
         
         onPlay();
@@ -253,7 +257,7 @@ container.appendChild(renderer.domElement);
 
 // create the sphere's material
 const sphereMaterial1 =
-new THREE.MeshStandardMaterial(
+new THREE.MeshLambertMaterial(
     {
     color: 0xff0000
     });
